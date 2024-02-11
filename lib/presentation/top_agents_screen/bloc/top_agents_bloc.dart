@@ -1,0 +1,6 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import '../models/datalist1_item_model.dart';import 'package:kanza_s_application1/presentation/top_agents_screen/models/top_agents_model.dart';part 'top_agents_event.dart';part 'top_agents_state.dart';/// A bloc that manages the state of a TopAgents according to the event that is dispatched to it.
+class TopAgentsBloc extends Bloc<TopAgentsEvent, TopAgentsState> {TopAgentsBloc(TopAgentsState initialState) : super(initialState) { on<TopAgentsInitialEvent>(_onInitialize); }
+
+_onInitialize(TopAgentsInitialEvent event, Emitter<TopAgentsState> emit, ) async  { emit(state.copyWith(topAgentsModelObj: state.topAgentsModelObj?.copyWith(datalist1ItemList: fillDatalist1ItemList()))); } 
+List<Datalist1ItemModel> fillDatalist1ItemList() { return [Datalist1ItemModel(amanda: ImageConstant.imgShape100x100, amanda1: "Amanda", text: "5.0", text1: "112", sold: "Sold"), Datalist1ItemModel(amanda: ImageConstant.imgShape12, amanda1: "Anderson"), Datalist1ItemModel(amanda: ImageConstant.imgShape13, amanda1: "Samantha"), Datalist1ItemModel(amanda: ImageConstant.imgShape14, amanda1: "Andrew"), Datalist1ItemModel(amanda: ImageConstant.imgShape15, amanda1: "Michael"), Datalist1ItemModel(amanda: ImageConstant.imgShape16, amanda1: "Tobi")]; } 
+ }

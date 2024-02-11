@@ -1,0 +1,6 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import '../models/cardlist_item_model.dart';import 'package:kanza_s_application1/presentation/review_empty_screen/models/review_empty_model.dart';part 'review_empty_event.dart';part 'review_empty_state.dart';/// A bloc that manages the state of a ReviewEmpty according to the event that is dispatched to it.
+class ReviewEmptyBloc extends Bloc<ReviewEmptyEvent, ReviewEmptyState> {ReviewEmptyBloc(ReviewEmptyState initialState) : super(initialState) { on<ReviewEmptyInitialEvent>(_onInitialize); }
+
+List<CardlistItemModel> fillCardlistItemList() { return [CardlistItemModel(text: "•••••••• 1222", balance: "Balance", price: " 31,250", balance1: ImageConstant.imgUser), CardlistItemModel(text: "•••••••• 1542", balance: "Balance", price: " 54,200", balance1: ImageConstant.imgSettings)]; } 
+_onInitialize(ReviewEmptyInitialEvent event, Emitter<ReviewEmptyState> emit, ) async  { emit(state.copyWith(formDateEmptyController: TextEditingController(), formDateEmptyController1: TextEditingController(), televisionController: TextEditingController())); emit(state.copyWith(reviewEmptyModelObj: state.reviewEmptyModelObj?.copyWith(cardlistItemList: fillCardlistItemList()))); } 
+ }

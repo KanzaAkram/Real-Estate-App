@@ -1,0 +1,6 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import '../models/addreviewfill_item_model.dart';import 'package:kanza_s_application1/presentation/add_review_fill_screen/models/add_review_fill_model.dart';part 'add_review_fill_event.dart';part 'add_review_fill_state.dart';/// A bloc that manages the state of a AddReviewFill according to the event that is dispatched to it.
+class AddReviewFillBloc extends Bloc<AddReviewFillEvent, AddReviewFillState> {AddReviewFillBloc(AddReviewFillState initialState) : super(initialState) { on<AddReviewFillInitialEvent>(_onInitialize); }
+
+List<AddreviewfillItemModel> fillAddreviewfillItemList() { return [AddreviewfillItemModel(shape: ImageConstant.imgShape50, iconClose: ImageConstant.imgIconCloseWhiteA700), AddreviewfillItemModel(shape: ImageConstant.imgShape51, iconClose: ImageConstant.imgIconCloseWhiteA700)]; } 
+_onInitialize(AddReviewFillInitialEvent event, Emitter<AddReviewFillState> emit, ) async  { emit(state.copyWith(formTextareaController: TextEditingController())); emit(state.copyWith(addReviewFillModelObj: state.addReviewFillModelObj?.copyWith(addreviewfillItemList: fillAddreviewfillItemList()))); } 
+ }
