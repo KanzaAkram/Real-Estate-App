@@ -1,0 +1,15 @@
+import '../summary_change_payment_bottomsheet/widgets/summarychange_item_widget.dart';import 'bloc/summary_change_payment_bloc.dart';import 'models/summary_change_payment_model.dart';import 'models/summarychange_item_model.dart';import 'package:flutter/material.dart';import 'package:kanza_s_application1/core/app_export.dart';import 'package:kanza_s_application1/widgets/custom_elevated_button.dart';import 'package:kanza_s_application1/presentation/summary_success_bottomsheet/summary_success_bottomsheet.dart';class SummaryChangePaymentBottomsheet extends StatelessWidget {const SummaryChangePaymentBottomsheet({Key? key}) : super(key: key);
+
+static Widget builder(BuildContext context) { return BlocProvider<SummaryChangePaymentBloc>(create: (context) => SummaryChangePaymentBloc(SummaryChangePaymentState(summaryChangePaymentModelObj: SummaryChangePaymentModel()))..add(SummaryChangePaymentInitialEvent()), child: SummaryChangePaymentBottomsheet()); } 
+@override Widget build(BuildContext context) { return Container(width: double.maxFinite, padding: EdgeInsets.symmetric(vertical: 24.v), decoration: AppDecoration.white.copyWith(borderRadius: BorderRadiusStyle.circleBorder50), child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(height: 3.v), SizedBox(width: 60.h, child: Divider()), SizedBox(height: 36.v), Align(alignment: Alignment.centerLeft, child: Padding(padding: EdgeInsets.only(left: 24.h), child: Text("lbl_change_payment".tr, style: CustomTextStyles.titleMediumBold))), SizedBox(height: 14.v), _buildSummaryChange(context), SizedBox(height: 50.v), CustomElevatedButton(text: "lbl_select_payment".tr, margin: EdgeInsets.symmetric(horizontal: 24.h), onPressed: () {onTapSelectPayment(context);})])); } 
+/// Section Widget
+Widget _buildSummaryChange(BuildContext context) { return Align(alignment: Alignment.centerRight, child: SizedBox(height: 180.v, child: BlocSelector<SummaryChangePaymentBloc, SummaryChangePaymentState, SummaryChangePaymentModel?>(selector: (state) => state.summaryChangePaymentModelObj, builder: (context, summaryChangePaymentModelObj) {return ListView.separated(padding: EdgeInsets.only(left: 24.h), scrollDirection: Axis.horizontal, separatorBuilder: (context, index) {return SizedBox(width: 10.h);}, itemCount: summaryChangePaymentModelObj?.summarychangeItemList.length ?? 0, itemBuilder: (context, index) {SummarychangeItemModel model = summaryChangePaymentModelObj?.summarychangeItemList[index] ?? SummarychangeItemModel(); return SummarychangeItemWidget(model);});}))); } 
+
+/// Displays a bottom sheet widget using the [showModalBottomSheet] method 
+/// of the [Scaffold] class with [isScrollControlled] set to true.
+///
+/// The bottom sheet is built using the [SummarySuccessBottomsheet]
+/// class and the [builder] method of the bottom sheet is passed the
+/// [BuildContext] object.
+onTapSelectPayment(BuildContext context) { showModalBottomSheet(context: context, builder: (_)=>SummarySuccessBottomsheet.builder(context),isScrollControlled: true); } 
+ }
